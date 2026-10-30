@@ -1,0 +1,16 @@
+# Colab/Jupyter artifacts
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+*.key
+*.pem
+*.token
+# User-specific and transient run outputs
+PAI2026_Submission_Artifacts/
+run_20*/
+# Large local models
+models/
+*.safetensors
+*.bin
