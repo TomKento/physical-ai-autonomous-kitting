@@ -22,7 +22,7 @@ Franka Panda（PyBullet／IK＋従来型制御）
 
 Notebookの処理順では、**AGVドッキング後にQR読取・Qwen推論**を行い、その後ロボットを動かします。上図は機能の構成を示します。
 
-> **Demo disclosure**：本プロジェクトのAGVは、車輪の物理制御やSLAMを持たない運動学的な模擬搬送です。QRはローカルPNGをOpenCVで読み取り、PyBullet内の仮想カメラから読み取っていません。AIは自然言語からタスクを抽出し、ロボットの関節角を直接生成しません。リアルタイム制御されたWebダッシュボードではなく、動画・ログを再生表示する方式です。
+> **Demo disclosure**：本プロジェクトのAGVは、車輪の物理制御やSLAMを持たない運動学的な模擬搬送です。QRはローカルPNGをOpenCVで読み取り、PyBullet内の仮想カメラから読み取っていません。AIは自然言語からタスクを抽出し、ロボットの関節角を直接生成しません。実演映像はシミュレーションで記録した結果を編集したものです。
 
 ## 実測結果（2026-10-29記録、各1試行）
 
@@ -67,7 +67,7 @@ assets/PRODUCT_A/qr_PRODUCT_A.png                   # OpenCV読取画像
 assets/PRODUCT_A/agv_docking_PRODUCT_A.mp4          # AGV模擬搬送（録画）
 assets/PRODUCT_A/robot_sorting_PRODUCT_A.mp4        # Pandaの実行映像（録画）
 assets/PRODUCT_B/...                                # 同様に製品B
-reports/PAI2026_Final_Report_with_LLM_Appendix_v2.pdf  # 5ページ説明資料（提出前に名前を変更）
+reports/PAI2026_Final_Report_with_LLM_Appendix_v2.pdf  # 5ページの実証レポート
 ```
 
 `assets/dashboard_index.json` のパスは `assets/` 起点の相対パスです。各manifestの `robot_execution.timeline_events[].video_time_s` は**ロボットMP4内の時刻**を指し、AGV・Qwen・QRと共通の単一時系列を計測したものではありません。
@@ -85,11 +85,9 @@ reports/PAI2026_Final_Report_with_LLM_Appendix_v2.pdf  # 5ページ説明資料�
 
 日本語指示12問でQwenとSarashina2.2-0.5B-Instructを比較した探索的評価では、厳密な3項目一致でQwen **6/12**、Sarashina **8/12**。明確な指示ではQwen 6/6、Sarashina 5/6、曖昧な指示ではQwen 0/6、Sarashina 3/6でした。これは小規模・プロンプト調整を経た評価であり、統計的なモデル優劣の証明ではありません。ロボットに接続した主モデルはQwenです。 詳細は最終レポート5ページ目のAppendixに掲載しています。なお `reports/PAI2026_Final_Report_SOURCE.html` は当初の4ページ本文のソース、`reports/PAI2026_Appendix_Model_Comparison_SOURCE.html` はAppendixのソースです。配布PDFは両者を結合した5ページ版です。
 
-## 提出・公開時の注意
+## 実演動画・ライセンス
 
-- GitHubリポジトリは**Public**にすること。実演動画は1～3分のMP4をYouTubeに限定公開以上で掲載し、レポートPDFと各URLをOmniCampusに提出します。
-- 作品・動画・PDF・リポジトリには氏名・所属・メールアドレス等の個人情報を掲載しないでください。
-- PDFの正式ファイル名は **`説明資料_PAI最終課題_omnicampusアカウント名.pdf`** にする必要があります。アカウント名が個人名の場合はアカウントIDを使用してください。
-- 本リポジトリにはライセンスを明示していません。再利用を許諾する場合は、権利関係を確認したうえで追加してください。
+- **実演動画**：[YouTube — AI-driven Autonomous Kitting System](https://youtu.be/iKiY20Zqvz4)（2分25秒の録画・編集デモ）。
+- 本リポジトリにはライセンスを明示していません。再利用する場合は、ソフトウェアおよび素材の権利条件をご確認ください。
 
 **Provenance**：Colab上で生成された実行結果を無加工で `assets/` に同梱しています。制御コードの主要部分はColabで動作確認済みのNotebook v2から移植し、公開版では出力・実行履歴を消去しただけです。作業過程では生成AIの開発支援を利用しています。
