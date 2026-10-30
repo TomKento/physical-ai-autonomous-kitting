@@ -1,0 +1,25 @@
+{
+  "run_id": "run_20261029T124105Z",
+  "replay_only": true,
+  "description": "Recorded Colab/PyBullet outputs, not browser-side live inference/control",
+  "products": [
+    {
+      "product_id": "PRODUCT_A",
+      "work_order_id": "WO-2026-A",
+      "manifest": "PRODUCT_A/manifest_PRODUCT_A.json",
+      "agv_video": "PRODUCT_A/agv_docking_PRODUCT_A.mp4",
+      "robot_video": "PRODUCT_A/robot_sorting_PRODUCT_A.mp4",
+      "qr_image": "PRODUCT_A/qr_PRODUCT_A.png",
+      "success": true
+    },
+    {
+      "product_id": "PRODUCT_B",
+      "work_order_id": "WO-2026-B",
+      "manifest": "PRODUCT_B/manifest_PRODUCT_B.json",
+      "agv_video": "PRODUCT_B/agv_docking_PRODUCT_B.mp4",
+      "robot_video": "PRODUCT_B/robot_sorting_PRODUCT_B.mp4",
+      "qr_image": "PRODUCT_B/qr_PRODUCT_B.png",
+      "success": true
+    }
+  ]
+}

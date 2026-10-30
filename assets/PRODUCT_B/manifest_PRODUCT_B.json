@@ -1,0 +1,279 @@
+{
+  "run_id": "run_20261029T124105Z",
+  "product_id": "PRODUCT_B",
+  "work_order_id": "WO-2026-B",
+  "recorded_at_utc": "2026-10-29T12:44:19.698033+00:00",
+  "inference": {
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "inference_api_used": false,
+    "runtime": "Google Colab cloud",
+    "duration_s": 19.22206103199983,
+    "raw_step_outputs": [
+      {
+        "step": 1,
+        "instruction": "赤色の部品をトレーAの区画1に配置する。",
+        "raw_output": "{\"object_color\":\"red\",\"slot\":\"A1\"}"
+      },
+      {
+        "step": 2,
+        "instruction": "青色の部品をトレーAの区画2に配置する。",
+        "raw_output": "{\"object_color\":\"blue\",\"slot\":\"A2\"}"
+      },
+      {
+        "step": 3,
+        "instruction": "緑色の部品をトレーBの区画1に配置する。",
+        "raw_output": "```json\n{\n  \"object_color\": \"green\",\n  \"slot\": \"B1\"\n}\n```"
+      }
+    ]
+  },
+  "sop": {
+    "text": "作業手順書 SOP-002\n目的：製品Bの生産準備に必要な部品を仕分ける。\n工程1：赤色の部品をトレーAの区画1に配置する。\n工程2：青色の部品をトレーAの区画2に配置する。\n工程3：緑色の部品をトレーBの区画1に配置する。\n注意事項：\n- 工程1から順番に実行する。\n- 指定部品がない場合、別の部品で代用しない。\n- 配置先が占有されている場合、作業を停止する。\n- 不明確な指示は推測せず確認する。\n",
+    "validated_plan": [
+      {
+        "step": 1,
+        "object_color": "red",
+        "slot": "A1"
+      },
+      {
+        "step": 2,
+        "object_color": "blue",
+        "slot": "A2"
+      },
+      {
+        "step": 3,
+        "object_color": "green",
+        "slot": "B1"
+      }
+    ]
+  },
+  "qr": {
+    "decoded_id": "WO-2026-B",
+    "image_file": "qr_PRODUCT_B.png",
+    "source": "generated PNG decoded by OpenCV, not a PyBullet virtual camera"
+  },
+  "agv": {
+    "video": "agv_docking_PRODUCT_B.mp4",
+    "gif": "agv_docking_PRODUCT_B.gif",
+    "mode": "kinematic synchronized transport; visual support; no SLAM or wheel dynamics"
+  },
+  "validation": {
+    "preflight_pass": true,
+    "fault_tests": [
+      {
+        "expected_error": "Missing part at source: red",
+        "correctly_blocked": true,
+        "robot_unchanged": true
+      },
+      {
+        "expected_error": "Occupied slot: A1",
+        "correctly_blocked": true,
+        "robot_unchanged": true
+      }
+    ]
+  },
+  "robot_execution": {
+    "steps": [
+      {
+        "step": 1,
+        "color": "red",
+        "slot": "A1",
+        "placement_error_m": 0.01423744383112645,
+        "tracking_error_m": 0.01581518126214328,
+        "success": true
+      },
+      {
+        "step": 2,
+        "color": "blue",
+        "slot": "A2",
+        "placement_error_m": 0.012947145620151666,
+        "tracking_error_m": 0.027627399558893588,
+        "success": true
+      },
+      {
+        "step": 3,
+        "color": "green",
+        "slot": "B1",
+        "placement_error_m": 0.0017988231940595473,
+        "tracking_error_m": 0.014809577780175089,
+        "success": true
+      }
+    ],
+    "final_occupancy": {
+      "A1": [
+        "red"
+      ],
+      "A2": [
+        "blue"
+      ],
+      "B1": [
+        "green"
+      ]
+    },
+    "expected_occupancy": {
+      "A1": [
+        "red"
+      ],
+      "A2": [
+        "blue"
+      ],
+      "B1": [
+        "green"
+      ]
+    },
+    "all_success": true,
+    "state_preservation": [
+      {
+        "after_step": 2,
+        "previous_color": "red",
+        "displacement_mm": 0.5785228258772819
+      },
+      {
+        "after_step": 3,
+        "previous_color": "red",
+        "displacement_mm": 1.1986662547849574
+      },
+      {
+        "after_step": 3,
+        "previous_color": "blue",
+        "displacement_mm": 0.6118535970436614
+      }
+    ],
+    "robot_video": "robot_sorting_PRODUCT_B.mp4",
+    "timeline_events": [
+      {
+        "stage": "APPROACH",
+        "step": 1,
+        "color": "red",
+        "slot": "A1",
+        "video_time_s": 0.125,
+        "frame_index": 1
+      },
+      {
+        "stage": "GRASP",
+        "step": 1,
+        "color": "red",
+        "slot": "A1",
+        "video_time_s": 2.375,
+        "frame_index": 19
+      },
+      {
+        "stage": "LIFT",
+        "step": 1,
+        "color": "red",
+        "slot": "A1",
+        "video_time_s": 2.625,
+        "frame_index": 21
+      },
+      {
+        "stage": "TRANSPORT",
+        "step": 1,
+        "color": "red",
+        "slot": "A1",
+        "video_time_s": 3.25,
+        "frame_index": 26
+      },
+      {
+        "stage": "PLACE_RELEASE",
+        "step": 1,
+        "color": "red",
+        "slot": "A1",
+        "video_time_s": 4.0,
+        "frame_index": 32
+      },
+      {
+        "stage": "APPROACH",
+        "step": 2,
+        "color": "blue",
+        "slot": "A2",
+        "video_time_s": 6.25,
+        "frame_index": 50
+      },
+      {
+        "stage": "GRASP",
+        "step": 2,
+        "color": "blue",
+        "slot": "A2",
+        "video_time_s": 8.5,
+        "frame_index": 68
+      },
+      {
+        "stage": "LIFT",
+        "step": 2,
+        "color": "blue",
+        "slot": "A2",
+        "video_time_s": 8.75,
+        "frame_index": 70
+      },
+      {
+        "stage": "TRANSPORT",
+        "step": 2,
+        "color": "blue",
+        "slot": "A2",
+        "video_time_s": 9.375,
+        "frame_index": 75
+      },
+      {
+        "stage": "PLACE_RELEASE",
+        "step": 2,
+        "color": "blue",
+        "slot": "A2",
+        "video_time_s": 10.125,
+        "frame_index": 81
+      },
+      {
+        "stage": "APPROACH",
+        "step": 3,
+        "color": "green",
+        "slot": "B1",
+        "video_time_s": 12.375,
+        "frame_index": 99
+      },
+      {
+        "stage": "GRASP",
+        "step": 3,
+        "color": "green",
+        "slot": "B1",
+        "video_time_s": 14.625,
+        "frame_index": 117
+      },
+      {
+        "stage": "LIFT",
+        "step": 3,
+        "color": "green",
+        "slot": "B1",
+        "video_time_s": 14.875,
+        "frame_index": 119
+      },
+      {
+        "stage": "TRANSPORT",
+        "step": 3,
+        "color": "green",
+        "slot": "B1",
+        "video_time_s": 15.5,
+        "frame_index": 124
+      },
+      {
+        "stage": "PLACE_RELEASE",
+        "step": 3,
+        "color": "green",
+        "slot": "B1",
+        "video_time_s": 16.25,
+        "frame_index": 130
+      }
+    ],
+    "video_frames": 149,
+    "video_fps": 8,
+    "recorded_physics_steps": 35400
+  },
+  "environment": {
+    "python": "3.13.18",
+    "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+    "device": "cpu",
+    "versions": {
+      "pybullet": "3.2.7",
+      "numpy": "2.1.3",
+      "torch": "2.11.0+cpu",
+      "transformers": "4.57.6"
+    }
+  }
+}

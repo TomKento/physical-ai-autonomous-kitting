@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><style>
+@page { size: A4; margin: 0; }
+*{box-sizing:border-box} body{margin:0;background:white;font-family:'Noto Sans CJK JP','Noto Sans',sans-serif;color:#193046;font-size:10px;line-height:1.5}
+.page{width:210mm;height:297mm;padding:16mm 15.5mm 18mm 15.5mm;position:relative}
+.kicker{font-weight:800;font-size:10px;letter-spacing:1.8px;color:#0b7895;margin:0 0 9px}
+.h1{font-size:21px;font-weight:800;letter-spacing:-.7px;padding-left:11px;border-left:4px solid #0b9f9e;line-height:1.35;margin:0 0 7px}
+.subtitle{color:#485d6f;font-size:10.6px;margin:0 0 12px;line-height:1.5}
+.summary{display:grid;grid-template-columns: 1fr 1fr 1fr;gap:8px;margin-bottom:13px}
+.kpi{border:1px solid #d7e3eb;border-radius:6px;padding:9px 10px;background:#f8fafc;min-height:67px}
+.kpi .eyebrow{font-size:9px;color:#60788b;font-weight:700}.kpi .value{font-size:22px;font-weight:800;color:#0e758c;line-height:1.55}.kpi .note{font-size:8.6px;color:#4a6175}
+.kpi.highlight{background:#eff9f8;border-color:#b5dedb}.kpi.highlight .value{color:#18817d}
+.section{font-size:12px;font-weight:800;color:#184c69;margin:12px 0 6px}
+.chartWrap{border:1px solid #d7e3eb;border-radius:7px;padding:10px 12px 9px;margin-bottom:7px}
+.legend{display:flex;gap:16px;margin:0 0 8px;font-size:9.3px;color:#506579}.dot{width:9px;height:9px;display:inline-block;border-radius:2px;margin-right:5px;vertical-align:middle}.qwen{background:#267fa1}.sara{background:#d99031}
+.graphGrid{display:grid;grid-template-columns:100px 1fr 86px;align-items:center;column-gap:9px;row-gap:7px;font-size:9.2px}
+.graphGrid .label{font-weight:700}.bars{position:relative;display:flex;flex-direction:column;gap:3px;padding:1px 0;border-left:1px solid #d5dee7}
+.bar{height:9px;border-radius:0 2px 2px 0}.valuecol{font-size:9px;color:#41556b;white-space:nowrap}
+.faint{font-size:8.7px;color:#677b8b;margin-top:7px}
+.twoCol{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:11px 0}
+.panel{background:#f5f9fc;border:1px solid #dbe6ee;border-radius:7px;padding:11px 11px 10px;min-height:99px}
+.panel.orange{background:#fff9ef;border-color:#f2debd}
+.panel h3{font-size:11.2px;margin:0 0 5px;color:#185f7c}
+.panel.orange h3{color:#98611e}
+.panel p{font-size:9.8px;line-height:1.55;margin:0;color:#283e51}
+.gate{border-left:4px solid #158c8b;background:#eff8f6;border-radius:3px;padding:10px 12px;margin-top:10px}
+.gate strong{font-size:10.7px;color:#086f72}
+.gate p{font-size:9.5px;margin:3px 0 0}
+.prompt{border-top:1px solid #dce6ec;padding-top:8px;margin-top:10px;font-size:9.6px}
+.prompt b{color:#184c69}.limits{background:#fff7ec;border-left:3px solid #d99c43;padding:8px 11px;margin-top:10px;font-size:9px;line-height:1.55}
+.close{font-size:10.2px;font-weight:700;margin-top:10px;color:#173a50}
+.source{font-size:8px;color:#708092;border-top:1px solid #e0e8ee;padding-top:8px;margin-top:11px}
+.footer{position:absolute;left:15.5mm;right:15.5mm;bottom:8mm;display:flex;justify-content:space-between;color:#6d7f91;font-size:7.5px}
+</style></head><body><div class="page">
+<p class="kicker">APPENDIX / EXPLORATORY MODEL EVALUATION</p>
+<h1 class="h1">製造作業指示におけるLLMの判断特性<br>Qwen vs Sarashina</h1>
+<p class="subtitle">同じ日本語指示でもモデルによって得意・不得意が異なる。企業は「モデル単体の総合点」ではなく、<b>業務適合性とシステム全体の安全性</b>で選ぶ必要がある。</p>
+<div class="summary">
+ <div class="kpi"><div class="eyebrow">QWEN / 総合完全一致</div><div class="value">6 / 12</div><div class="note">50.0%｜明確な指示に強み</div></div>
+ <div class="kpi highlight"><div class="eyebrow">SARASHINA / 総合完全一致</div><div class="value">8 / 12</div><div class="note">66.7%｜曖昧指示で相対優位</div></div>
+ <div class="kpi"><div class="eyebrow">PYTHON GATE / 誤実行許可</div><div class="value">0 / 6</div><div class="note">各モデルとも曖昧指示6問で0件</div></div>
+</div>
+<h2 class="section">比較結果｜Prompt v2での追加12問（各モデル同じ指示）</h2>
+<div class="chartWrap">
+ <div class="legend"><span><i class="dot qwen"></i>Qwen2.5-0.5B-Instruct</span><span><i class="dot sara"></i>Sarashina2.2-0.5B-Instruct</span></div>
+ <div class="graphGrid">
+  <div class="label">総合完全一致<br><small>12問</small></div><div class="bars"><div class="bar qwen" style="width:50%"></div><div class="bar sara" style="width:66.7%"></div></div><div class="valuecol">6/12 ｜ 8/12</div>
+  <div class="label">明確な指示<br><small>6問</small></div><div class="bars"><div class="bar qwen" style="width:100%"></div><div class="bar sara" style="width:83.3%"></div></div><div class="valuecol">6/6 ｜ 5/6</div>
+  <div class="label">曖昧な指示<br><small>6問</small></div><div class="bars"><div class="bar qwen" style="width:0%;height:9px"></div><div class="bar sara" style="width:50%"></div></div><div class="valuecol">0/6 ｜ 3/6</div>
+  <div class="label">出力スキーマ適合<br><small>12問</small></div><div class="bars"><div class="bar qwen" style="width:83.3%"></div><div class="bar sara" style="width:100%"></div></div><div class="valuecol">10/12 ｜ 12/12</div>
+ </div>
+ <p class="faint">「完全一致」は実行可否・部品色・配置先の3項目すべてが正解の場合。スキーマ適合にはJSON構文に加え許容値の遵守も含める。</p>
+</div>
+<div class="twoCol">
+ <div class="panel"><h3>Qwen｜明確な指示に強い</h3><p>「青い部品をA2に置く」のように必要情報が揃う指示で<b>6/6正解</b>。一方、曖昧な指示では存在しない部品色や配置先を補うなど、完全一致は<b>0/6</b>だった。</p></div>
+ <div class="panel orange"><h3>Sarashina｜曖昧さへの対応で優位</h3><p>総合<b>8/12</b>でQwenを上回った。曖昧指示の完全一致は<b>3/6</b>。ただし正常な指示を拒否する誤判定が<b>1件</b>あり、どの場面でも優れているわけではない。</p></div>
+</div>
+<div class="gate"><strong>LLMの推論結果 ≠ 実行許可｜Pythonによる独立ゲート</strong><p>原文にない色・配置先の補完や許容外の値を検出して拒否。今回の各モデルの曖昧指示6件では<b>不適切な実行許可0件</b>。ただし、未知の表現や実機安全規格への適合を保証する結果ではない。</p></div>
+<p class="prompt"><b>プロンプト改善の効果：</b>先行4問ではSarashinaがv1の0/4からv2の3/4へ改善、Qwenは1/4から1/4。Few-shot例の追加とルール明確化を同時に行ったため、改善要因は分離できない。</p>
+<div class="limits"><b>解釈上の注意：</b>12問・各1回の探索的評価で統計的な優劣は確定できない。先行4問と似た表現も含む。Prompt v2はSarashinaの失敗を観察後に調整したため、完全な事前固定ブラインド比較ではない。今回Sarashinaをロボット実行には接続していない。「国産モデルの可能性」は示唆されるが、データ所在・運用主体等のソブリン性は未検証。</div>
+<p class="close">示唆｜製造業では「明確指示の実行精度」「曖昧指示の確認精度」「構造化出力」「安全ゲート」を分けて評価する。</p>
+<div class="source">出典：本制作のColab実験 Step 12C / 13A–13D（2026-10-25）。比較対象 Qwen/Qwen2.5-0.5B-Instruct、sbintuitions/sarashina2.2-0.5b-instruct-v0.1。Colab CPU推論、do_sample=False、Prompt v2を共通使用。</div>
+<div class="footer"><span>Physical AI 2026 / AI-driven Autonomous Kitting</span><span>5 / 5</span></div>
+</div></body></html>
